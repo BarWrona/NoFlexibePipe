@@ -1,4 +1,3 @@
-<?php include "./includes/ProjectsLoader.php"; ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -88,65 +87,78 @@
             <h3>Pjutert Poznansky</h3>
             <img src="pictures/pjutert.jpg" alt="director">
             <p>Dyrektor ds. Rozwoju</p>
-            <p class="employee-description">12 lat w optymalizacji procesów IT. Specjalista ITIL z doświadczeniem w zarządzaniu zespołami wsparcia
+            <p class="employee-description">12 lat w optymalizacji procesów IT. Specjalista ITIL z doświadczeniem w
+                zarządzaniu zespołami wsparcia
                 technicznego.</p>
         </div>
     </div>
 </section>
 
 <section class="gallery">
-    <h2>Galeria naszych projektów</h2>
-    <div class="gallery-container">
-        <button class="gallery-btn prev-btn">&lt;</button>
-        <div class="gallery-content">
-            <div class="gallery-image">
-                <img src="pictures/gallery1.jpg" alt="Galeria 1" id="currentImage">
-            </div>
-            <div class="gallery-description" id="currentDescription">
-                <h3>Projekt Sieci dla Szpitala Wojewódzkiego</h3>
-                <ul>
-                    <li>Wdrożenie kompleksowej infrastruktury sieciowej</li>
-                    <li>Instalacja 500+ punktów dostępowych</li>
-                    <li>System monitoringu i bezpieczeństwa</li>
-                    <li>Okres realizacji: 2020-2021</li>
-                </ul>
-            </div>
+    <hr>
+    <h2> Nasze największe projekty</h2>
+    <hr>
+    <?php
+    include "./includes/ProjectsLoader.php";
+    $projectsLoader = new ProjectsLoader();
+    $projects = $projectsLoader->getProjects();
+    ?>
+    <div class="projects-container">
+        <button class="project-nav prev-project">&larr;</button>
+        <div class="project-item">
+
+            <?php
+            if (!empty($projects)) {
+                $currentProject = $projects[0];
+                echo '<img src="pictures/' . $currentProject->getImage() . '" alt="project image">';
+                echo '<div class="project-content">';
+                echo '<h3>' . $currentProject->getTitle() . '</h3>';
+                echo '<p>' . $currentProject->getDetails() . '</p>';
+                echo '</div>';
+            }
+            ?>
+
         </div>
-        <button class="gallery-btn next-btn">&gt;</button>
+        <button class="project-nav next-project">&rarr;</button>
     </div>
     <script>
+        let currentProjectIndex = 0;
+        const projects = <?php echo json_encode(array_map(function ($project) {
+            return [
+                'image' => $project->getImage(),
+                'title' => $project->getTitle(),
+                'details' => $project->getDetails()
+            ];
+        }, $projects)); ?>;
 
-        const projects = <?php echo json_encode($projectsLoader->getProjects()); ?>;
-        let currentIndex = 0;
-        const currentImage = document.getElementById('currentImage');
-        const currentDescription = document.getElementById('currentDescription');
-        let slideInterval;
-
-        const nextSlide = () => {
-            currentIndex = (currentIndex + 1) % projects.length;
-            currentImage.src = projects[currentIndex].image;
-            currentDescription.innerHTML = `<h3>${projects[currentIndex].title}</h3>${projects[currentIndex].details}`;
-        };
-
-        slideInterval = setInterval(nextSlide, 10000);
-
-        document.querySelector('.prev-btn').addEventListener('click', () => {
-            clearInterval(slideInterval);
-            currentIndex = (currentIndex - 1 + projects.length) % projects.length;
-            currentImage.src = projects[currentIndex].image;
-            currentDescription.innerHTML = `<h3>${projects[currentIndex].title}</h3>${projects[currentIndex].details}`;
-            slideInterval = setInterval(nextSlide, 10000);
+        document.querySelector('.prev-project').addEventListener('click', () => {
+            currentProjectIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
+            updateProject();
         });
 
-        document.querySelector('.next-btn').addEventListener('click', () => {
-            clearInterval(slideInterval);
-            currentIndex = (currentIndex + 1) % projects.length;
-            currentImage.src = projects[currentIndex].image;
-            currentDescription.innerHTML = `<h3>${projects[currentIndex].title}</h3>${projects[currentIndex].details}`;
-            slideInterval = setInterval(nextSlide, 10000);
+        document.querySelector('.next-project').addEventListener('click', () => {
+            currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+            updateProject();
         });
+
+        function updateProject() {
+            const projectItem = document.querySelector('.project-item');
+            projectItem.innerHTML = `
+                        <img src="pictures/${projects[currentProjectIndex].image}" alt="project image">
+                        <div class="project-content">
+                            <h3>${projects[currentProjectIndex].title}</h3>
+                            <p>${projects[currentProjectIndex].details}</p>
+                        </div>
+            `;
+        }
+
+        setInterval(() => {
+            currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+            updateProject();
+        }, 10000);
     </script>
 </section>
 
 </body>
 </html>
+

@@ -14,7 +14,7 @@
 <nav>
     <a><img src="/pictures/NoFlexibePipeLogo.jpg" alt="Logo"></a>
     <p> Zawodowcy z pasją</p>
-    <button class="menu-button">
+    <button class="menu-button" onclick="document.querySelector('.menu').classList.toggle('active')">
     <span class="material-icons">menu</span>
     </button>
     <div class="menu">
@@ -22,11 +22,6 @@
         <a href="./kontakt.php">Kontakt</a>
         <a href="./uslugi.php">Usługi</a>
     </div>
-    <script>
-        document.querySelector('.menu-button').addEventListener('click', function () {
-            document.querySelector('.menu').classList.toggle('active');
-        });
-    </script>
 </nav>
 </html>
 

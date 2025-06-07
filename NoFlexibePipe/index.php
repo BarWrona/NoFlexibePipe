@@ -3,11 +3,12 @@
 <head>
     <title>No Flexibe Pipe</title>
     <link rel="stylesheet" href="styles/style.css">
-
+    <link rel="icon" type="image/x-icon" href="/pictures/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav>
-    <?php include "./includes/header.php"; ?>
+<?php include "./includes/header.php"; ?>
 </nav>
 <section class="hero">
     <div class="hero-content">
@@ -51,6 +52,11 @@
         <img src="pictures/webService.png" alt="Sieci">
         <h3>Infrastruktura Sieciowa</h3>
         <a href="sieci.php" class="service-link">Dowiedz się więcej</a>
+    </div>
+    <div class="service">
+        <img src="pictures/szkolenie.png" alt="Szkolenia">
+        <h3>Szkolenia</h3>
+        <a href="szkolenia.php" class="service-link">Dowiedz się więcej</a>
     </div>
 </section>
 <section class="management">
@@ -158,7 +164,7 @@
         }, 10000);
     </script>
 </section>
-
+<?php include "./includes/footer.php"; ?>
 </body>
 </html>
 

@@ -243,7 +243,6 @@ nav{
 
 .service {
     flex: 1;
-    width: 50%;
     background-color: white;
     border-radius: 5px;
     padding: 20px;
@@ -251,7 +250,11 @@ nav{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
-@media (max-width: 500px) {
+@media (max-width: 850px) {
+    .services{
+        flex-direction: column;
+        align-items: center;
+    }
     .service {
         width: 100%;
     }
@@ -263,7 +266,7 @@ nav{
 
 .service img {
     width: 100%;
-    height: auto;
+    height: 300px;
     max-width: 300px;
     border-radius: 5px;
     margin-bottom: 15px;

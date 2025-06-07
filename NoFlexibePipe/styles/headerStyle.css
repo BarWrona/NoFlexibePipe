@@ -1,4 +1,6 @@
-
+*{
+    box-sizing: border-box;
+}
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -59,10 +61,11 @@ nav > p {
     align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 795px) {
     nav {
         display: flex;
         justify-content: space-between;
+        padding: 10px;
     }
 
 

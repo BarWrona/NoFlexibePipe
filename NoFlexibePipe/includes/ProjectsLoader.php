@@ -3,11 +3,6 @@ require_once 'Project.php';
 
 class ProjectsLoader
 {
-    private const DB_HOST = 'localhost';
-    private const DB_NAME = 'NoFlexibePipe';
-    private const DB_USER = 'root';
-    private const DB_PASS = '';
-
     private PDO $connection;
     private array $projects = [];
 
@@ -19,12 +14,12 @@ class ProjectsLoader
 
     private function connectToDatabase(): void
     {
+        $db_host = 'localhost';
+        $db_user = 'root';
+        $db_pass = '';
+        $db_name = 'NoFlexibePipe';
         try {
-            $this->connection = new PDO(
-                "mysql:host=" . self::DB_HOST . ";dbname=" . self::DB_NAME,
-                self::DB_USER,
-                self::DB_PASS
-            );
+            $this->connection = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_pass);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());

@@ -1,9 +1,7 @@
 *{
     box-sizing: border-box;
 }
-body {
-    font-family: 'Roboto', sans-serif;
-}
+
 nav {
     top: 0;
     left: 0;
@@ -14,7 +12,7 @@ nav {
     border: 0;
     border-radius: 0;
     position: fixed;
-    width: 100vw;
+    width: 100%;
     z-index: 100;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -61,7 +59,7 @@ nav > p {
     align-items: center;
 }
 
-@media (max-width: 795px) {
+@media (max-width: 850px) {
     nav {
         display: flex;
         justify-content: space-between;

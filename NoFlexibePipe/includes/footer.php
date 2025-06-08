@@ -1,4 +1,4 @@
-<html>
+<html lang="pl">
 <head>
     <title>Footer</title>
     <link rel="stylesheet" href="../styles/footer.css">
@@ -7,7 +7,7 @@
 </head>
 <footer>
     <div class="policy-privacy">
-        <a href="./index.php"> Polityka prywatności </a>
+        <a href="../attachments/NFPM-privacy&policy.pdf" target="_blank" rel="noopener"> Polityka prywatności </a>
         <a href="./kontakt.php">Warunki użytkownika</a>
     </div>
     <div class="socials">

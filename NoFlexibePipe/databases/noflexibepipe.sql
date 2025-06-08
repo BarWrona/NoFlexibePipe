@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 07, 2025 at 11:19 PM
+-- Generation Time: Cze 08, 2025 at 11:08 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -34,14 +34,6 @@ CREATE TABLE `messages` (
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`name`, `email`, `subject`, `message`) VALUES
-('grerge', 'fews@example.com', 'teamat', 'wiadoanwdaać'),
-('rgeefs', 'fwedw@example.com', 'd3dwabyu', 'efdawehui32');
-
 -- --------------------------------------------------------
 
 --
@@ -65,6 +57,28 @@ INSERT INTO `projects` (`image`, `title`, `details`) VALUES
 ('gallery4.jpg', 'Kompleks Biurowy \"Business Park\"', '<ul><li>Sieć światłowodowa dla 5 budynków</li><li>System kontroli dostępu</li><li>Centrum zarządzania bezpieczeństwem</li><li>Okres realizacji: 2023</li></ul>'),
 ('gallery5.jpg', 'Hotel \"Grand Resort & SPA\"', '<ul><li>Sieć dla 300 pokoi hotelowych</li><li>System rezerwacji i obsługi gości</li><li>Monitoring i kontrola dostępu</li><li>Okres realizacji: 2023-2024</li></ul>'),
 ('gallery6.jpg', 'Osiedle \"Smart Living\"', '<ul><li>Inteligentna sieć dla 500 mieszkań</li><li>System automatyki budynkowej</li><li>Monitoring i kontrola wjazdu</li><li>Okres realizacji: 2024-2025</li></ul>');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `profileImage` text NOT NULL,
+  `reviewTitle` text NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`profileImage`, `reviewTitle`, `description`) VALUES
+('review1.jpg', 'opinia', 'opis opinii'),
+('review2.jpg', 'tytuł2', 'opis2 '),
+('review3.jpg', 'tytuł 3 ', 'opis 3'),
+('review4.jpg', 'review 4 title', 'to będzie bardzo długi opis, który powinien się zawijać, zobaczymy czy to zrobi :)');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

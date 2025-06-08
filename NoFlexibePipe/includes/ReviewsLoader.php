@@ -1,15 +1,15 @@
 <?php
-require_once 'Project.php';
+require_once 'Review.php';
 
-class ProjectsLoader
+class ReviewsLoader
 {
     private PDO $connection;
-    private array $projects = [];
+    private array $reviews = [];
 
     public function __construct()
     {
         $this->connectToDatabase();
-        $this->loadProjects();
+        $this->loadReviews();
     }
 
     private function connectToDatabase(): void
@@ -26,26 +26,24 @@ class ProjectsLoader
         }
     }
 
-    private function loadProjects(): void
+    private function loadReviews(): void
     {
         try {
-            $stmt = $this->connection->query("SELECT image, title, details FROM projects");
+            $stmt = $this->connection->query("SELECT profileImage, reviewTitle, description FROM reviews");
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $this->projects[] = new Project(
-                    $row['image'],
-                    $row['title'],
-                    $row['details']
+                $this->reviews[] = new Review(
+                    $row['profileImage'],
+                    $row['reviewTitle'],
+                    $row['description']
                 );
             }
         } catch (PDOException $e) {
             die("Query failed: " . $e->getMessage());
         }
-
     }
 
-
-    public function getProjects(): array
+    public function getReviews(): array
     {
-        return $this->projects;
+        return $this->reviews;
     }
 }

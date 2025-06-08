@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -8,7 +9,8 @@
 </head>
 <body>
 <nav>
-<?php include "./includes/header.php"; ?>
+    <?php include "./includes/header.php"; ?>
+
 </nav>
 <section class="hero">
     <div class="hero-content">
@@ -99,6 +101,102 @@
         </div>
     </div>
 </section>
+<?php
+include "./includes/ReviewsLoader.php";
+$reviewsLoader = new ReviewsLoader();
+$reviews = $reviewsLoader->getReviews();
+?>
+<section class="reviews">
+    <div class="reviews-container">
+    <button class="review-nav prev-review">&larr;</button>
+    <button class="review-nav prev-review-small">&uarr;</button>
+    <div class="review-item">
+
+        <?php
+        if (!empty($reviews)) {
+            $currentReview = $reviews[0];
+            echo '<img src="pictures/' . $currentReview->getProfileImage() . '" alt="review image">';
+            echo '<div class="review-content">';
+            echo '<h3>' . $currentReview->getReviewTitle() . '</h3>';
+            echo '<p>' . $currentReview->getDescription() . '</p>';
+            echo '</div>';
+        }
+        ?>
+
+    </div>
+    <div class="review-item">
+
+        <?php
+        if (!empty($reviews)) {
+            $currentReview = $reviews[1];
+            echo '<img src="pictures/' . $currentReview->getProfileImage() . '" alt="review image">';
+            echo '<div class="review-content">';
+            echo '<h3>' . $currentReview->getReviewTitle() . '</h3>';
+            echo '<p>' . $currentReview->getDescription() . '</p>';
+            echo '</div>';
+        }
+        ?>
+
+    </div>
+    <div class="review-item">
+
+        <?php
+        if (!empty($reviews)) {
+            $currentReview = $reviews[2];
+            echo '<img src="pictures/' . $currentReview->getProfileImage() . '" alt="review image">';
+            echo '<div class="review-content">';
+            echo '<h3>' . $currentReview->getReviewTitle() . '</h3>';
+            echo '<p>' . $currentReview->getDescription() . '</p>';
+            echo '</div>';
+        }
+        ?>
+
+    </div>
+    <button class="review-nav next-review">&rarr;</button>
+    <button class="review-nav next-review-small">&darr;</button>
+    </div>
+        <script>
+            let currentReviewIndex = 0;
+            const reviews = <?php echo json_encode(array_map(function ($review) {
+                return [
+                    'reviewImage' => $review->getProfileImage(),
+                    'reviewTitle' => $review->getReviewTitle(),
+                    'description' => $review->getDescription()
+                ];
+            }, $reviews)); ?>;
+
+            document.querySelectorAll('.prev-review, .prev-review-small').forEach(button => {
+                button.addEventListener('click', () => {
+                    currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+                    updateReviews();
+                });
+            });
+
+            document.querySelectorAll('.next-review, .next-review-small').forEach(button => {
+                button.addEventListener('click', () => {
+                    currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+                    updateReviews();
+                });
+            });
+
+            function updateReviews() {
+                const reviewItems = document.querySelectorAll('.review-item');
+
+                reviewItems.forEach((reviewItem, index) => {
+                    const reviewIndex = (currentReviewIndex + index) % reviews.length;
+
+                    reviewItem.innerHTML = `
+            <img src="pictures/${reviews[reviewIndex].reviewImage}" alt="review image">
+            <div class="review-content">
+                <h3>${reviews[reviewIndex].reviewTitle}</h3>
+                <p>${reviews[reviewIndex].description}</p>
+            </div>
+        `;
+                });
+            }
+
+        </script>
+</section>
 
 <section class="gallery">
     <hr>
@@ -164,6 +262,7 @@
         }, 10000);
     </script>
 </section>
+
 <?php include "./includes/footer.php"; ?>
 </body>
 </html>

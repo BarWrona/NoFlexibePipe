@@ -44,12 +44,15 @@ function addMessage()
     $db_user = 'root';
     $db_pass = '';
     $db_name = 'NoFlexibePipe';
+    //$mail_subject = "Potwierdzenie przesłania formularza";
+    //$mail_message = "Twoja wiadomość została przesłana";
 
     try {
         $connection = new PDO("mysql:host=". $db_host . ";dbname=" . $db_name,$db_user , $db_pass);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $connection->query("INSERT INTO  messages (name, email, subject, message) 
+        $connection->query("INSERT INTO  messages (name, email, subject, message) 
 VALUES ('$_POST[name]', '$_POST[email]', '$_POST[subject]', '$_POST[message]')");
+        //mail($_POST['email'], $mail_subject, $mail_message);
     } catch (PDOException $e) {
         die("Connection failed: " . $e->getMessage());
     }

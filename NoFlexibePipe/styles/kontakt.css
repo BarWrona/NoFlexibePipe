@@ -13,17 +13,6 @@ body {
 
 }
 
-.services {
-    padding: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../pictures/gallery6.jpg');
-    background-size: cover;
-    background-position: center;
-    width: calc(80vw);
-    margin-bottom: 20px;
-    color: white;
-    border-radius: 10px;
-}
-
 .hero {
     display: flex;
     flex-direction: column;
@@ -175,4 +164,34 @@ body {
     color: #28a745;
     margin: 5px 0;
     background-color: #ddf8d7;
+}
+
+.map{
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+}
+
+.map h3{
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+    background-color: #007bff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.map iframe{
+    width: 100%;
+    height: 450px;
+    margin-bottom: 20px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
